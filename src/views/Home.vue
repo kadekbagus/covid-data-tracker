@@ -41,7 +41,9 @@ export default {
       loadingImage: '',
       totalLabel: ['Confirmed', 'Recovered', 'Deaths'],
       totalData: [],
-     // totalData: [5197505, 4514782, 146365],
+      totalConfirmed: 0,
+      totalRecovered: 0,
+      totalDeaths: 0,
       startDate: '',
       endDate: '',
     }
@@ -56,10 +58,6 @@ export default {
         let totalCountryAPI = 'https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=id'
         const data = await this.fetchData(totalCountryAPI)
         return data
-        //console.log(data)
-        // this.totalData.push(data[0].totalConfirmed)
-        // this.totalData.push(data[0].totalRecovered)
-        // this.totalData.push(data[0].totalDeaths)
     },
     updateData(country) {
       console.log(country)
@@ -93,10 +91,12 @@ export default {
   async created() {
     this.getStartEndDate()
     let totalCountryData = await this.getTotalCountry()
-    console.log(totalCountryData)
-    this.totalData.push(totalCountryData[0].totalConfirmed)
-    this.totalData.push(totalCountryData[0].totalRecovered)
-    this.totalData.push(totalCountryData[0].totalDeaths)
+    this.totalConfirmed = totalCountryData[0].totalConfirmed
+    this.totalRecovered = totalCountryData[0].totalRecovered
+    this.totalDeaths = totalCountryData[0].totalDeaths
+    this.totalData.push(this.totalConfirmed)
+    this.totalData.push(this.totalRecovered)
+    this.totalData.push(this.totalDeaths)
     //console.log(this.totalData)
     // this.dataDate = data.Date
     // this.stats = data.Global
