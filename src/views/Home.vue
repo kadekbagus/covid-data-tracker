@@ -1,7 +1,8 @@
 <template>
   <main v-if="!loading"> 
-    <DataTitle :text="title" :dataDate="dataDate"/>
-    <DataBoxes :stats="stats" />
+    <!-- <DataTitle :text="title" :dataDate="dataDate"/>
+    <DataBoxes :stats="stats" /> -->
+    <PieChart :chartData="totalData" :chartLabel="totalLabel" />
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
@@ -19,6 +20,8 @@
 import DataTitle from '@/components/DataTitle'
 import DataBoxes from '@/components/DataBoxes'
 import CountrySelect from '@/components/CountrySelect'
+import PieChart from '@/components/PieChart'
+import moment from 'moment'
 
 export default {
   name: 'Home',
@@ -26,6 +29,7 @@ export default {
     DataTitle,
     DataBoxes,
     CountrySelect,
+    PieChart,
   },
   data() {
     return {
@@ -35,13 +39,27 @@ export default {
       stats: {},
       countries: [],
       loadingImage: '',
+      totalLabel: ['Confirmed', 'Recovered', 'Deaths'],
+      totalData: [],
+     // totalData: [5197505, 4514782, 146365],
+      startDate: '',
+      endDate: '',
     }
   },
   methods: {
-    async fetchData() {
-      const response = await fetch('https://api.covid19api.com/summary')
+    async fetchData(queryString) {
+      const response = await fetch(queryString)
       const data = await response.json()
       return data
+    },
+    async getTotalCountry() {
+        let totalCountryAPI = 'https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=id'
+        const data = await this.fetchData(totalCountryAPI)
+        return data
+        //console.log(data)
+        // this.totalData.push(data[0].totalConfirmed)
+        // this.totalData.push(data[0].totalRecovered)
+        // this.totalData.push(data[0].totalDeaths)
     },
     updateData(country) {
       console.log(country)
@@ -54,13 +72,35 @@ export default {
       this.title = 'Global'
       this.stats = data.Global
       this.loading = false
-    }
+    },
+    getStartEndDate() {
+      let now = moment();
+      let pastDates = [];
+      for( let i=1;i<=28;i++) { 
+      now = now.subtract(1, 'day')
+        // console.log(now.format('YYYY-MM-DD'))
+        // pastDates.push(now)
+        if (i===1) {
+          this.endDate = now.format('YYYY-MM-DD')
+        }
+
+        if (i===28) {
+          this.startDate = now.format('YYYY-MM-DD')
+        }
+      }
+    },
   },
   async created() {
-    const data = await this.fetchData()
-    this.dataDate = data.Date
-    this.stats = data.Global
-    this.countries = data.Countries
+    this.getStartEndDate()
+    let totalCountryData = await this.getTotalCountry()
+    console.log(totalCountryData)
+    this.totalData.push(totalCountryData[0].totalConfirmed)
+    this.totalData.push(totalCountryData[0].totalRecovered)
+    this.totalData.push(totalCountryData[0].totalDeaths)
+    //console.log(this.totalData)
+    // this.dataDate = data.Date
+    // this.stats = data.Global
+    // this.countries = data.Countries
     this.loading = false
   }
 }
