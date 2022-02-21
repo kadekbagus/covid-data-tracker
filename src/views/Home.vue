@@ -2,7 +2,7 @@
   <main v-if="!loading"> 
     <!-- <DataTitle :text="title" :dataDate="dataDate"/>
     <DataBoxes :stats="stats" /> -->
-    <PieChart :chartData="totalData" :chartLabel="totalLabel" />
+    <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" />
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
@@ -39,8 +39,9 @@ export default {
       stats: {},
       countries: [],
       loadingImage: '',
-      totalLabel: ['Confirmed', 'Recovered', 'Deaths'],
-      totalData: [],
+      pieChartTotalLabel: ['Confirmed', 'Recovered', 'Deaths'],
+      pieChartTotalData: [],
+      pieChartTotalColor: [],
       totalConfirmed: 0,
       totalRecovered: 0,
       totalDeaths: 0,
@@ -94,10 +95,9 @@ export default {
     this.totalConfirmed = totalCountryData[0].totalConfirmed
     this.totalRecovered = totalCountryData[0].totalRecovered
     this.totalDeaths = totalCountryData[0].totalDeaths
-    this.totalData.push(this.totalConfirmed)
-    this.totalData.push(this.totalRecovered)
-    this.totalData.push(this.totalDeaths)
-    //console.log(this.totalData)
+    this.pieChartTotalData.push(this.totalConfirmed)
+    this.pieChartTotalData.push(this.totalRecovered)
+    this.pieChartTotalData.push(this.totalDeaths)
     // this.dataDate = data.Date
     // this.stats = data.Global
     // this.countries = data.Countries

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <canvas id="myChart"></canvas>
     </div>
 </template>
@@ -38,3 +38,11 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+.container {
+    max-width: 500px;
+    max-height: 500px;
+}
+</style>
