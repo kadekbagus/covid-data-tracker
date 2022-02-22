@@ -45,6 +45,8 @@ export default {
       totalConfirmed: 0,
       totalRecovered: 0,
       totalDeaths: 0,
+      deathRate: 0,
+      recoveryRate: 0,
       startDate: '',
       endDate: '',
     }
@@ -77,17 +79,26 @@ export default {
       let pastDates = [];
       for( let i=1;i<=28;i++) { 
       now = now.subtract(1, 'day')
-        // console.log(now.format('YYYY-MM-DD'))
-        // pastDates.push(now)
         if (i===1) {
           this.endDate = now.format('YYYY-MM-DD')
         }
-
         if (i===28) {
           this.startDate = now.format('YYYY-MM-DD')
         }
       }
     },
+    calculateDeathRate() {
+      let num = Number((this.totalDeaths/this.totalConfirmed)*100) 
+      let roundedString = num.toFixed(1)
+      let rounded = Number(roundedString)
+      this.deathRate = rounded
+    },
+    calculateRecoveryRate() {
+      let num = Number((this.totalRecovered/this.totalConfirmed)*100) 
+      let roundedString = num.toFixed(1)
+      let rounded = Number(roundedString)
+      this.recoveryRate = rounded
+    }
   },
   async created() {
     this.getStartEndDate()
@@ -98,9 +109,8 @@ export default {
     this.pieChartTotalData.push(this.totalConfirmed)
     this.pieChartTotalData.push(this.totalRecovered)
     this.pieChartTotalData.push(this.totalDeaths)
-    // this.dataDate = data.Date
-    // this.stats = data.Global
-    // this.countries = data.Countries
+    this.calculateDeathRate()
+    this.calculateRecoveryRate()
     this.loading = false
   }
 }
