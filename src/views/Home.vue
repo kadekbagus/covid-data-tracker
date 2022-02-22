@@ -2,7 +2,7 @@
   <main v-if="!loading"> 
     <!-- <DataTitle :text="title" :dataDate="dataDate"/>
     <DataBoxes :stats="stats" /> -->
-    <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" />
+    <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
@@ -41,7 +41,7 @@ export default {
       loadingImage: '',
       pieChartTotalLabel: ['Confirmed', 'Recovered', 'Deaths'],
       pieChartTotalData: [],
-      pieChartTotalColor: [],
+      pieChartTotalColor: ['#be2528', '#2596be', '#0b2d39'],
       totalConfirmed: 0,
       totalRecovered: 0,
       totalDeaths: 0,

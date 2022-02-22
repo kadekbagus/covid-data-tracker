@@ -5,23 +5,18 @@
 </template>
 
 <script>
-//import { Line } from 'chart.js'
 import { Chart, registerables } from 'chart.js';
 
 export default {
   name: 'PieChart',
-  props: ['chartData', 'chartLabel'],
+  props: ['chartData', 'chartLabel', 'chartColor'],
   mounted () {
     const data = {
     labels: this.chartLabel,
     datasets: [{
         label: 'Total Cases',
         data: this.chartData,
-        backgroundColor: [
-        'red',
-        'green',
-        'black'
-        ],
+        backgroundColor: this.chartColor,
         hoverOffset: 4
     }]
     };
