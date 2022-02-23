@@ -1,10 +1,21 @@
 <template>
   <main v-if="!loading">
-    <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
-    <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
-    <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
-    <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
     <CountrySelect @get-country="updateData" :countries="countries"/>
+
+    <div class="grid grid-cols-2 mt-10">
+      <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths"/>
+      <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
+    </div>
+
+    <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
+
+    <div class="grid grid-cols-3 mt-10">
+      <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
+      <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
+      <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
+    </div>
+
+    
 
     <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
       clear country
@@ -23,6 +34,7 @@ import DataBoxes from '@/components/DataBoxes'
 import CountrySelect from '@/components/CountrySelect'
 import PieChart from '@/components/PieChart'
 import LineChart from '@/components/LineChart'
+import InfoBox from '@/components/InfoBox'
 import moment from 'moment'
 
 export default {
@@ -33,6 +45,7 @@ export default {
     CountrySelect,
     PieChart,
     LineChart,
+    InfoBox,
   },
   data() {
     return {
@@ -44,7 +57,7 @@ export default {
       loadingImage: '',
       pieChartTotalLabel: ['Confirmed', 'Recovered', 'Deaths'],
       pieChartTotalData: [],
-      pieChartTotalColor: ['#be2528', '#2596be', '#0b2d39'],
+      pieChartTotalColor: ['#ef4444', '#22c55e', '#6B7280'],
       totalConfirmed: 0,
       totalRecovered: 0,
       totalDeaths: 0,

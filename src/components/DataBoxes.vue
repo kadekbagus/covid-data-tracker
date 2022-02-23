@@ -1,27 +1,19 @@
 <template>
-    <div class="grid md:grid-cols-2 gap-4">
-        <div class="shadow-md bg-blue-100 p-10 text-center rounded">
-            <h3 class="text-3xl text-blue-900 font-bold mb-4">Cases</h3>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">New:</span>
-                {{ formatNumber(stats.NewConfirmed) }}
+    <div class="grid md:grid-cols-2 gap-4 mt-10">
+        <div class="shadow-md bg-blue-100 p-5 text-center rounded">
+            <h3 class="text-xl text-blue-900 font-bold mb-4">Recovery Rate</h3>
+            <div class="text-4xl mb-4">
+                <span class="font-bold">{{ recoveryRate }}%</span>
             </div>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">Total:</span>
-                {{ formatNumber(stats.TotalConfirmed) }}
-            </div>
+            <span>of total cases</span>
         </div>
 
-        <div class="shadow-md bg-blue-100 p-10 text-center rounded">
-            <h3 class="text-3xl text-blue-900 font-bold mb-4">Deaths</h3>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">New:</span>
-                {{ formatNumber(stats.NewDeaths) }}
+        <div class="shadow-md bg-blue-100 p-5 text-center rounded">
+            <h3 class="text-xl text-blue-900 font-bold mb-4">Death Rate</h3>
+            <div class="text-4xl mb-4">
+                <span class="font-bold">{{ deathRate }}%</span>
             </div>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">Total:</span>
-                {{ formatNumber(stats.TotalDeaths) }}
-            </div>
+            <span>of total cases</span>
         </div>
     </div>
 </template>
@@ -32,12 +24,8 @@
 
 export default {
     name: 'DataBoxes',
-    props: ['stats'],
+    props: ['deathRate', 'recoveryRate'],
     methods: {
-        formatNumber(number) {
-            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        }
     }
-
 }
 </script>
