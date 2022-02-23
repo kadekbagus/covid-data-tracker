@@ -1,7 +1,5 @@
 <template>
-  <main v-if="!loading"> 
-    <!-- <DataTitle :text="title" :dataDate="dataDate"/>
-    <DataBoxes :stats="stats" /> -->
+  <main v-if="!loading">
     <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
     <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
@@ -94,15 +92,14 @@ export default {
     },
     getStartEndDate() {
       let now = moment();
-      let pastDates = [];
-      for( let i=1;i<=28;i++) { 
-      now = now.subtract(1, 'day')
-        if (i===1) {
-          this.endDate = now.format('YYYY-MM-DD')
-        }
-        if (i===28) {
-          this.startDate = now.format('YYYY-MM-DD')
-        }
+      for( let i=1; i<=28; i++) { 
+        now = now.subtract(1, 'day')
+          if (i===1) {
+            this.endDate = now.format('YYYY-MM-DD')
+          }
+          if (i===28) {
+            this.startDate = now.format('YYYY-MM-DD')
+          }
       }
     },
     calculateDeathRate() {
@@ -130,7 +127,8 @@ export default {
     this.calculateDeathRate()
     this.calculateRecoveryRate()
     let dailyNewCaseData = await this.getDailyNewCases()
-    for( let i=0; i<=26; i++) {
+    let maxData = (dailyNewCaseData.length)-1
+    for( let i=0; i<=maxData; i++) {
       this.newCaseLabel.push(moment(dailyNewCaseData[i].last_updated).format('DD MMM'))
       this.newCaseConfirm.push(dailyNewCaseData[i].new_infections)
       this.newCaseDeath.push(dailyNewCaseData[i].new_deaths)
