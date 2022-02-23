@@ -3,7 +3,7 @@
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <div class="grid grid-cols-2 mt-10">
-      <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths"/>
+      <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths" :lastUpdated="lastUpdated"/>
       <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     </div>
 
@@ -70,9 +70,10 @@ export default {
       newCaseDeath: [],
       newCaseConfirm: [],
       newCaseRecover: [],
-      lineChartColor: ['#be2528', '#2596be', '#0b2d39'],
+      lineChartColor: ['#ef4444', '#22c55e', '#6B7280'],
       lineChartId: ['lineChart1', 'lineChart2', 'lineChart3'],
       lineChartTitle: ['Daily Confirm Cases', 'Daily Recovery Cases', 'Daily Death Cases'],
+      lastUpdated: '',
     }
   },
   methods: {
@@ -134,6 +135,7 @@ export default {
     this.totalConfirmed = totalCountryData[0].totalConfirmed
     this.totalRecovered = totalCountryData[0].totalRecovered
     this.totalDeaths = totalCountryData[0].totalDeaths
+    this.lastUpdated = moment(totalCountryData[0].lastUpdated).format('DD MMMM YYYY')
     this.pieChartTotalData.push(this.totalConfirmed)
     this.pieChartTotalData.push(this.totalRecovered)
     this.pieChartTotalData.push(this.totalDeaths)

@@ -3,17 +3,17 @@
         <div class="shadow-md bg-blue-100 p-5 text-center rounded">
             <h3 class="text-xl text-blue-900 font-bold mb-4">Recovery Rate</h3>
             <div class="text-4xl mb-4">
-                <span class="font-bold">{{ recoveryRate }}%</span>
+                <span class="font-bold text-green-500">{{ recoveryRate }}%</span>
             </div>
-            <span>of total cases</span>
+            <span class="text-blue-900 font-bold">of total cases</span>
         </div>
 
         <div class="shadow-md bg-blue-100 p-5 text-center rounded">
             <h3 class="text-xl text-blue-900 font-bold mb-4">Death Rate</h3>
             <div class="text-4xl mb-4">
-                <span class="font-bold">{{ deathRate }}%</span>
+                <span class="font-bold text-gray-500">{{ deathRate }}%</span>
             </div>
-            <span>of total cases</span>
+            <span class="text-blue-900 font-bold">of total cases</span>
         </div>
     </div>
 </template>
