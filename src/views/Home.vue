@@ -3,7 +3,7 @@
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <div class="grid grid-cols-2 mt-10">
-      <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths" :lastUpdated="lastUpdated"/>
+      <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths" :lastUpdated="lastUpdated" :countryName="countryName"/>
       <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     </div>
 
@@ -15,11 +15,6 @@
       <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
     </div>
 
-    
-
-    <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
-      clear country
-    </button>
   </main>
 
   <main v-else class="flex flex-col align-center justify-center text-center"> 
@@ -36,6 +31,7 @@ import PieChart from '@/components/PieChart'
 import LineChart from '@/components/LineChart'
 import InfoBox from '@/components/InfoBox'
 import moment from 'moment'
+import Countries from './../country'
 
 export default {
   name: 'Home',
@@ -53,7 +49,7 @@ export default {
       title: 'Global',
       dataDate: '',
       stats: {},
-      countries: [],
+      countries: Countries,
       loadingImage: '',
       pieChartTotalLabel: ['Confirmed', 'Recovered', 'Deaths'],
       pieChartTotalData: [],
@@ -65,7 +61,8 @@ export default {
       recoveryRate: 0,
       startDate: '',
       endDate: '',
-      country: 'id',
+      countryName: 'Indonesia',
+      countryCode: 'id',
       newCaseLabel: [],
       newCaseDeath: [],
       newCaseConfirm: [],
@@ -83,19 +80,44 @@ export default {
       return data
     },
     async getTotalCountry() {
-        let totalCountryAPI = `https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=${this.country}`
+        let totalCountryAPI = `https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=${this.countryCode}`
         const data = await this.fetchData(totalCountryAPI)
         return data
     },
     async getDailyNewCases() {
-        let dailyCaseAPI = `https://api.coronatracker.com/v5/analytics/newcases/country?countryCode=${this.country}&startDate=${this.startDate}&endDate=${this.endDate}`
+        let dailyCaseAPI = `https://api.coronatracker.com/v5/analytics/newcases/country?countryCode=${this.countryCode}&startDate=${this.startDate}&endDate=${this.endDate}`
         const data = await this.fetchData(dailyCaseAPI)
         return data
     },
-    updateData(country) {
-      console.log(country)
-      this.stats = country
-      this.title = country.Country
+    async updateData(country) {
+      this.countryName = country.Country
+      this.countryCode = country.ID
+      this.pieChartTotalData = []
+      this.newCaseLabel = []
+      this.newCaseConfirm = []
+      this.newCaseDeath = []
+      this.newCaseRecover = []
+      this.loading = true
+      this.getStartEndDate()
+      let totalCountryData = await this.getTotalCountry()
+      this.totalConfirmed = totalCountryData[0].totalConfirmed
+      this.totalRecovered = totalCountryData[0].totalRecovered
+      this.totalDeaths = totalCountryData[0].totalDeaths
+      this.lastUpdated = moment(totalCountryData[0].lastUpdated).format('DD MMMM YYYY')
+      this.pieChartTotalData.push(this.totalConfirmed)
+      this.pieChartTotalData.push(this.totalRecovered)
+      this.pieChartTotalData.push(this.totalDeaths)
+      this.calculateDeathRate()
+      this.calculateRecoveryRate()
+      let dailyNewCaseData = await this.getDailyNewCases()
+      let maxData = (dailyNewCaseData.length)-1
+      for( let i=0; i<=maxData; i++) {
+        this.newCaseLabel.push(moment(dailyNewCaseData[i].last_updated).format('DD MMM'))
+        this.newCaseConfirm.push(dailyNewCaseData[i].new_infections)
+        this.newCaseDeath.push(dailyNewCaseData[i].new_deaths)
+        this.newCaseRecover.push(dailyNewCaseData[i].new_recovered)
+      }
+      this.loading = false
     },
     async clearData() {
       this.loading = true
@@ -127,7 +149,7 @@ export default {
       let roundedString = num.toFixed(1)
       let rounded = Number(roundedString)
       this.recoveryRate = rounded
-    }
+    },
   },
   async created() {
     this.getStartEndDate()
