@@ -3,6 +3,9 @@
     <!-- <DataTitle :text="title" :dataDate="dataDate"/>
     <DataBoxes :stats="stats" /> -->
     <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
+    <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
+    <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
+    <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
     <button v-if="stats.Country" v-on:click="clearData" class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
@@ -21,6 +24,7 @@ import DataTitle from '@/components/DataTitle'
 import DataBoxes from '@/components/DataBoxes'
 import CountrySelect from '@/components/CountrySelect'
 import PieChart from '@/components/PieChart'
+import LineChart from '@/components/LineChart'
 import moment from 'moment'
 
 export default {
@@ -30,6 +34,7 @@ export default {
     DataBoxes,
     CountrySelect,
     PieChart,
+    LineChart,
   },
   data() {
     return {
@@ -49,6 +54,14 @@ export default {
       recoveryRate: 0,
       startDate: '',
       endDate: '',
+      country: 'id',
+      newCaseLabel: [],
+      newCaseDeath: [],
+      newCaseConfirm: [],
+      newCaseRecover: [],
+      lineChartColor: ['#be2528', '#2596be', '#0b2d39'],
+      lineChartId: ['lineChart1', 'lineChart2', 'lineChart3'],
+      lineChartTitle: ['Daily Confirm Cases', 'Daily Recovery Cases', 'Daily Death Cases'],
     }
   },
   methods: {
@@ -58,8 +71,13 @@ export default {
       return data
     },
     async getTotalCountry() {
-        let totalCountryAPI = 'https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=id'
+        let totalCountryAPI = `https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=${this.country}`
         const data = await this.fetchData(totalCountryAPI)
+        return data
+    },
+    async getDailyNewCases() {
+        let dailyCaseAPI = `https://api.coronatracker.com/v5/analytics/newcases/country?countryCode=${this.country}&startDate=${this.startDate}&endDate=${this.endDate}`
+        const data = await this.fetchData(dailyCaseAPI)
         return data
     },
     updateData(country) {
@@ -111,6 +129,13 @@ export default {
     this.pieChartTotalData.push(this.totalDeaths)
     this.calculateDeathRate()
     this.calculateRecoveryRate()
+    let dailyNewCaseData = await this.getDailyNewCases()
+    for( let i=0; i<=26; i++) {
+      this.newCaseLabel.push(moment(dailyNewCaseData[i].last_updated).format('DD MMM'))
+      this.newCaseConfirm.push(dailyNewCaseData[i].new_infections)
+      this.newCaseDeath.push(dailyNewCaseData[i].new_deaths)
+      this.newCaseRecover.push(dailyNewCaseData[i].new_recovered)
+    }
     this.loading = false
   }
 }

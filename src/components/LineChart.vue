@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <canvas id="pieChart"></canvas>
+        <canvas v-bind:id="chartId"></canvas>
     </div>
 </template>
 
@@ -8,26 +8,32 @@
 import { Chart, registerables } from 'chart.js';
 
 export default {
-  name: 'PieChart',
-  props: ['chartData', 'chartLabel', 'chartColor'],
+  name: 'LineChart',
+  props: ['chartData', 
+          'chartLabel',
+          'chartColor', 
+          'chartId',
+          'chartTitle',
+        ],
   mounted () {
     const data = {
     labels: this.chartLabel,
     datasets: [{
-        label: 'Total Cases',
+        label: this.chartTitle,
         data: this.chartData,
-        backgroundColor: this.chartColor,
-        hoverOffset: 4
+        fill: false,
+        borderColor: this.chartColor,
+        tension: 0.1
     }]
     };
     
     const config = {
-        type: 'pie',
+        type: 'line',
         data: data,
     };
 
-    var pieChart = new Chart(
-        document.getElementById('pieChart'),
+    var lineChart = new Chart(
+        document.getElementById(this.chartId),
         config
     );
   }
