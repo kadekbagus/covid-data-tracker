@@ -8,13 +8,24 @@
     </div>
 
     <div class="grid grid-cols-1">
-       <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
+      <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
     </div>
    
     <div class="grid grid-cols-3 mt-10">
       <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
       <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
       <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
+    </div>
+
+    <div class="grid grid-cols-1 mt-10">
+      <BarChart :trendTotalConfirmed="trendTotalConfirmed" 
+                :trendTotalRecovered="trendTotalRecovered" 
+                :trendTotalDeaths="trendTotalDeaths"
+                :chartId="barChartId"
+                :chartTitle="trendTotalTitle"
+                :chartLabel="trendTotalLabel"
+                :chartColor="trendTotalColor"
+      />
     </div>
 
   </main>
@@ -31,6 +42,7 @@ import DataBoxes from '@/components/DataBoxes'
 import CountrySelect from '@/components/CountrySelect'
 import PieChart from '@/components/PieChart'
 import LineChart from '@/components/LineChart'
+import BarChart from '@/components/BarChart'
 import InfoBox from '@/components/InfoBox'
 import moment from 'moment'
 import Countries from './../country'
@@ -43,6 +55,7 @@ export default {
     CountrySelect,
     PieChart,
     LineChart,
+    BarChart,
     InfoBox,
   },
   data() {
@@ -73,6 +86,13 @@ export default {
       lineChartId: ['lineChart1', 'lineChart2', 'lineChart3'],
       lineChartTitle: ['Daily Confirm Cases', 'Daily Recovery Cases', 'Daily Death Cases'],
       lastUpdated: '',
+      barChartId: ['barChart1'],
+      trendTotalTitle: ['Total Confirmed', 'Total Recovered', 'Total Deaths'],
+      trendTotalColor: ['#ef4444', '#22c55e', '#6B7280'],
+      trendTotalLabel: [],
+      trendTotalConfirmed: [],
+      trendTotalRecovered: [],
+      trendTotalDeaths: [],
     }
   },
   methods: {
@@ -91,6 +111,11 @@ export default {
         const data = await this.fetchData(dailyCaseAPI)
         return data
     },
+    async getTrendTotalCases() {
+        let dailyCaseAPI = `https://api.coronatracker.com/v5/analytics/trend/country?countryCode=${this.countryCode}&startDate=${this.startDate}&endDate=${this.endDate}`
+        const data = await this.fetchData(dailyCaseAPI)
+        return data
+    },
     async updateData(country) {
       this.countryName = country.Country
       this.countryCode = country.ID
@@ -99,6 +124,10 @@ export default {
       this.newCaseConfirm = []
       this.newCaseDeath = []
       this.newCaseRecover = []
+      this.trendTotalLabel = []
+      this.trendTotalConfirmed = []
+      this.trendTotalRecovered = []
+      this.trendTotalDeaths = []
       this.loading = true
       this.getStartEndDate()
       let totalCountryData = await this.getTotalCountry()
@@ -118,6 +147,14 @@ export default {
         this.newCaseConfirm.push(dailyNewCaseData[i].new_infections)
         this.newCaseDeath.push(dailyNewCaseData[i].new_deaths)
         this.newCaseRecover.push(dailyNewCaseData[i].new_recovered)
+      }
+      let trendTotalCaseData = await this.getTrendTotalCases()
+      maxData = (trendTotalCaseData.length)-1
+      for( let i=0; i<=maxData; i++) {
+        this.trendTotalLabel.push(moment(trendTotalCaseData[i].last_updated).format('DD MMM'))
+        this.trendTotalConfirmed.push(trendTotalCaseData[i].total_confirmed)
+        this.trendTotalRecovered.push(trendTotalCaseData[i].total_recovered)
+        this.trendTotalDeaths.push(trendTotalCaseData[i].total_deaths)
       }
       this.loading = false
     },
@@ -172,6 +209,14 @@ export default {
       this.newCaseConfirm.push(dailyNewCaseData[i].new_infections)
       this.newCaseDeath.push(dailyNewCaseData[i].new_deaths)
       this.newCaseRecover.push(dailyNewCaseData[i].new_recovered)
+    }
+    let trendTotalCaseData = await this.getTrendTotalCases()
+    maxData = (trendTotalCaseData.length)-1
+    for( let i=0; i<=maxData; i++) {
+      this.trendTotalLabel.push(moment(trendTotalCaseData[i].last_updated).format('DD MMM'))
+      this.trendTotalConfirmed.push(trendTotalCaseData[i].total_confirmed)
+      this.trendTotalRecovered.push(trendTotalCaseData[i].total_recovered)
+      this.trendTotalDeaths.push(trendTotalCaseData[i].total_deaths)
     }
     this.loading = false
   }
