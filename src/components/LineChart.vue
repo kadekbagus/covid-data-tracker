@@ -39,11 +39,3 @@ export default {
   }
 }
 </script>
-
-
-<style scoped>
-.container {
-    max-width: 500px;
-    max-height: 500px;
-}
-</style>

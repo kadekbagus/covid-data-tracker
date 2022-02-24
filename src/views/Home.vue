@@ -7,8 +7,10 @@
       <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     </div>
 
-    <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
-
+    <div class="grid grid-cols-1">
+       <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
+    </div>
+   
     <div class="grid grid-cols-3 mt-10">
       <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
       <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
