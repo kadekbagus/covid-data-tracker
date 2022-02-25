@@ -230,11 +230,6 @@ const Countries = [
         "ID": "CI"
     },
     {
-        "Country": "Falkland Islands (Malvinas)",
-        "Slug": "falkland-islands-malvinas",
-        "ID": "FK"
-    },
-    {
         "Country": "Ghana",
         "Slug": "ghana",
         "ID": "GH"
@@ -378,16 +373,6 @@ const Countries = [
         "Country": "Solomon Islands",
         "Slug": "solomon-islands",
         "ID": "SB"
-    },
-    {
-        "Country": "South Georgia and the South Sandwich Islands",
-        "Slug": "south-georgia-and-the-south-sandwich-islands",
-        "ID": "GS"
-    },
-    {
-        "Country": "Cocos (Keeling) Islands",
-        "Slug": "cocos-keeling-islands",
-        "ID": "CC"
     },
     {
         "Country": "Dominican Republic",
@@ -920,11 +905,6 @@ const Countries = [
         "ID": "MY"
     },
     {
-        "Country": "Virgin Islands, US",
-        "Slug": "virgin-islands",
-        "ID": "VI"
-    },
-    {
         "Country": "Mali",
         "Slug": "mali",
         "ID": "ML"
@@ -1093,11 +1073,6 @@ const Countries = [
         "Country": "Marshall Islands",
         "Slug": "marshall-islands",
         "ID": "MH"
-    },
-    {
-        "Country": "Northern Mariana Islands",
-        "Slug": "northern-mariana-islands",
-        "ID": "MP"
     },
     {
         "Country": "Russian Federation",
