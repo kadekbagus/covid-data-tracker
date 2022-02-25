@@ -9,9 +9,9 @@ Covid data tracker is a dashboard app that shows covid19 cases from around the w
 - **Chart.js**
 
 ## Live Demo
-```
+
 https://kadekbagus.github.io/covid-data-tracker/
-```
+
 
 ## How to run (on your local machine)
 first you need to clone the repo, using git clone

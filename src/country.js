@@ -55,11 +55,6 @@ const Countries = [
         "ID": "AF"
     },
     {
-        "Country": "American Samoa",
-        "Slug": "american-samoa",
-        "ID": "AS"
-    },
-    {
         "Country": "Belize",
         "Slug": "belize",
         "ID": "BZ"
@@ -145,11 +140,6 @@ const Countries = [
         "ID": "PF"
     },
     {
-        "Country": "Guam",
-        "Slug": "guam",
-        "ID": "GU"
-    },
-    {
         "Country": "Kiribati",
         "Slug": "kiribati",
         "ID": "KI"
@@ -180,11 +170,6 @@ const Countries = [
         "ID": "VA"
     },
     {
-        "Country": "Korea (North)",
-        "Slug": "korea-north",
-        "ID": "KP"
-    },
-    {
         "Country": "Trinidad and Tobago",
         "Slug": "trinidad-and-tobago",
         "ID": "TT"
@@ -203,11 +188,6 @@ const Countries = [
         "Country": "Papua New Guinea",
         "Slug": "papua-new-guinea",
         "ID": "PG"
-    },
-    {
-        "Country": "Christmas Island",
-        "Slug": "christmas-island",
-        "ID": "CX"
     },
     {
         "Country": "Iraq",
@@ -258,11 +238,6 @@ const Countries = [
         "Country": "San Marino",
         "Slug": "san-marino",
         "ID": "SM"
-    },
-    {
-        "Country": "Republic of Kosovo",
-        "Slug": "kosovo",
-        "ID": "XK"
     },
     {
         "Country": "Malta",
@@ -340,11 +315,6 @@ const Countries = [
         "ID": "LU"
     },
     {
-        "Country": "South Sudan",
-        "Slug": "south-sudan",
-        "ID": "SS"
-    },
-    {
         "Country": "British Virgin Islands",
         "Slug": "british-virgin-islands",
         "ID": "VG"
@@ -363,11 +333,6 @@ const Countries = [
         "Country": "Cameroon",
         "Slug": "cameroon",
         "ID": "CM"
-    },
-    {
-        "Country": "Jersey",
-        "Slug": "jersey",
-        "ID": "JE"
     },
     {
         "Country": "Solomon Islands",
@@ -443,11 +408,6 @@ const Countries = [
         "Country": "Namibia",
         "Slug": "namibia",
         "ID": "NA"
-    },
-    {
-        "Country": "Tuvalu",
-        "Slug": "tuvalu",
-        "ID": "TV"
     },
     {
         "Country": "Japan",
@@ -533,11 +493,6 @@ const Countries = [
         "Country": "New Caledonia",
         "Slug": "new-caledonia",
         "ID": "NC"
-    },
-    {
-        "Country": "Brunei Darussalam",
-        "Slug": "brunei",
-        "ID": "BN"
     },
     {
         "Country": "Comoros",
@@ -660,11 +615,6 @@ const Countries = [
         "ID": "BJ"
     },
     {
-        "Country": "Congo (Brazzaville)",
-        "Slug": "congo-brazzaville",
-        "ID": "CG"
-    },
-    {
         "Country": "Germany",
         "Slug": "germany",
         "ID": "DE"
@@ -715,11 +665,6 @@ const Countries = [
         "ID": "LK"
     },
     {
-        "Country": "Turkmenistan",
-        "Slug": "turkmenistan",
-        "ID": "TM"
-    },
-    {
         "Country": "Liberia",
         "Slug": "liberia",
         "ID": "LR"
@@ -753,11 +698,6 @@ const Countries = [
         "Country": "Iceland",
         "Slug": "iceland",
         "ID": "IS"
-    },
-    {
-        "Country": "Puerto Rico",
-        "Slug": "puerto-rico",
-        "ID": "PR"
     },
     {
         "Country": "Qatar",
