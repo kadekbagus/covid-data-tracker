@@ -61,11 +61,7 @@ export default {
   data() {
     return {
       loading: true,
-      title: 'Global',
-      dataDate: '',
-      stats: {},
       countries: Countries,
-      loadingImage: '',
       pieChartTotalLabel: ['Confirmed', 'Recovered', 'Deaths'],
       pieChartTotalData: [],
       pieChartTotalColor: ['#ef4444', '#22c55e', '#6B7280'],
@@ -156,13 +152,6 @@ export default {
         this.trendTotalRecovered.push(trendTotalCaseData[i].total_recovered)
         this.trendTotalDeaths.push(trendTotalCaseData[i].total_deaths)
       }
-      this.loading = false
-    },
-    async clearData() {
-      this.loading = true
-      const data = await this.fetchData()
-      this.title = 'Global'
-      this.stats = data.Global
       this.loading = false
     },
     getStartEndDate() {
