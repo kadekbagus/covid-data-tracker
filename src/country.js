@@ -55,6 +55,11 @@ const Countries = [
         "ID": "AF"
     },
     {
+        "Country": "Azerbaijan",
+        "Slug": "azerbaijan",
+        "ID": "AZ"
+    },
+    {
         "Country": "Belize",
         "Slug": "belize",
         "ID": "BZ"
@@ -63,6 +68,21 @@ const Countries = [
         "Country": "Bahrain",
         "Slug": "bahrain",
         "ID": "BH"
+    },
+    {
+        "Country": "Belgium",
+        "Slug": "belgium",
+        "ID": "BE"
+    },
+    {
+        "Country": "British Indian Ocean Territory",
+        "Slug": "british-indian-ocean-territory",
+        "ID": "IO"
+    },
+    {
+        "Country": "Burundi",
+        "Slug": "burundi",
+        "ID": "BI"
     },
     {
         "Country": "China",
@@ -75,9 +95,19 @@ const Countries = [
         "ID": "CY"
     },
     {
+        "Country": "Chile",
+        "Slug": "chile",
+        "ID": "CL"
+    },
+    {
         "Country": "Denmark",
         "Slug": "denmark",
         "ID": "DK"
+    },
+    {
+        "Country": "Dominica",
+        "Slug": "dominica",
+        "ID": "DM"
     },
     {
         "Country": "El Salvador",
@@ -95,6 +125,31 @@ const Countries = [
         "ID": "FJ"
     },
     {
+        "Country": "France",
+        "Slug": "france",
+        "ID": "FR"
+    },
+    {
+        "Country": "French Polynesia",
+        "Slug": "french-polynesia",
+        "ID": "PF"
+    },
+    {
+        "Country": "Grenada",
+        "Slug": "grenada",
+        "ID": "GD"
+    },
+    {
+        "Country": "Ghana",
+        "Slug": "ghana",
+        "ID": "GH"
+    },
+    {
+        "Country": "Greece",
+        "Slug": "greece",
+        "ID": "GR"
+    },
+    {
         "Country": "Jordan",
         "Slug": "jordan",
         "ID": "JO"
@@ -103,16 +158,6 @@ const Countries = [
         "Country": "Lao PDR",
         "Slug": "lao-pdr",
         "ID": "LA"
-    },
-    {
-        "Country": "Dominica",
-        "Slug": "dominica",
-        "ID": "DM"
-    },
-    {
-        "Country": "Grenada",
-        "Slug": "grenada",
-        "ID": "GD"
     },
     {
         "Country": "Mauritius",
@@ -130,16 +175,6 @@ const Countries = [
         "ID": "NP"
     },
     {
-        "Country": "France",
-        "Slug": "france",
-        "ID": "FR"
-    },
-    {
-        "Country": "French Polynesia",
-        "Slug": "french-polynesia",
-        "ID": "PF"
-    },
-    {
         "Country": "Kiribati",
         "Slug": "kiribati",
         "ID": "KI"
@@ -153,6 +188,11 @@ const Countries = [
         "Country": "Myanmar",
         "Slug": "myanmar",
         "ID": "MM"
+    },
+    {
+        "Country": "Mexico",
+        "Slug": "mexico",
+        "ID": "MX"
     },
     {
         "Country": "Palestinian Territory",
@@ -210,11 +250,6 @@ const Countries = [
         "ID": "CI"
     },
     {
-        "Country": "Ghana",
-        "Slug": "ghana",
-        "ID": "GH"
-    },
-    {
         "Country": "Ireland",
         "Slug": "ireland",
         "ID": "IE"
@@ -250,11 +285,6 @@ const Countries = [
         "ID": "BB"
     },
     {
-        "Country": "Greece",
-        "Slug": "greece",
-        "ID": "GR"
-    },
-    {
         "Country": "Isle of Man",
         "Slug": "isle-of-man",
         "ID": "IM"
@@ -273,11 +303,6 @@ const Countries = [
         "Country": "Tonga",
         "Slug": "tonga",
         "ID": "TO"
-    },
-    {
-        "Country": "Mexico",
-        "Slug": "mexico",
-        "ID": "MX"
     },
     {
         "Country": "Cayman Islands",
@@ -900,11 +925,6 @@ const Countries = [
         "ID": "UZ"
     },
     {
-        "Country": "Burundi",
-        "Slug": "burundi",
-        "ID": "BI"
-    },
-    {
         "Country": "Micronesia, Federated States of",
         "Slug": "micronesia",
         "ID": "FM"
@@ -925,11 +945,6 @@ const Countries = [
         "ID": "TG"
     },
     {
-        "Country": "Zimbabwe",
-        "Slug": "zimbabwe",
-        "ID": "ZW"
-    },
-    {
         "Country": "Bosnia and Herzegovina",
         "Slug": "bosnia-and-herzegovina",
         "ID": "BA"
@@ -948,21 +963,6 @@ const Countries = [
         "Country": "Guadeloupe",
         "Slug": "guadeloupe",
         "ID": "GP"
-    },
-    {
-        "Country": "Belgium",
-        "Slug": "belgium",
-        "ID": "BE"
-    },
-    {
-        "Country": "British Indian Ocean Territory",
-        "Slug": "british-indian-ocean-territory",
-        "ID": "IO"
-    },
-    {
-        "Country": "Chile",
-        "Slug": "chile",
-        "ID": "CL"
     },
     {
         "Country": "Gambia",
@@ -1050,11 +1050,6 @@ const Countries = [
         "ID": "SC"
     },
     {
-        "Country": "Azerbaijan",
-        "Slug": "azerbaijan",
-        "ID": "AZ"
-    },
-    {
         "Country": "Madagascar",
         "Slug": "madagascar",
         "ID": "MG"
@@ -1088,6 +1083,11 @@ const Countries = [
         "Country": "Turks and Caicos Islands",
         "Slug": "turks-and-caicos-islands",
         "ID": "TC"
+    },
+    {
+        "Country": "Zimbabwe",
+        "Slug": "zimbabwe",
+        "ID": "ZW"
     }
 ]
 
