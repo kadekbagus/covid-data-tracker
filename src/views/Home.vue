@@ -2,7 +2,7 @@
   <main v-if="!loading">
     <CountrySelect @get-country="updateData" :countries="countries"/>
 
-    <div class="grid grid-cols-2 mt-10">
+    <div class="grid md:grid-cols-2 mt-10">
       <InfoBox :totalConfirmed="totalConfirmed" :totalRecovered="totalRecovered" :totalDeaths="totalDeaths" :lastUpdated="lastUpdated" :countryName="countryName"/>
       <PieChart :chartData="pieChartTotalData" :chartLabel="pieChartTotalLabel" :chartColor="pieChartTotalColor"/>
     </div>
@@ -11,13 +11,13 @@
       <DataBoxes :deathRate="deathRate" :recoveryRate="recoveryRate"/>
     </div>
    
-    <div class="grid grid-cols-3 mt-10">
+    <div class="grid md:grid-cols-3 mt-10">
       <LineChart :chartData="newCaseConfirm " :chartLabel="newCaseLabel" :chartColor="lineChartColor[0]" :chartId="lineChartId[0]" :chartTitle="lineChartTitle[0]"/>
       <LineChart :chartData="newCaseRecover" :chartLabel="newCaseLabel" :chartColor="lineChartColor[1]" :chartId="lineChartId[1]" :chartTitle="lineChartTitle[1]"/>
       <LineChart :chartData="newCaseDeath" :chartLabel="newCaseLabel" :chartColor="lineChartColor[2]" :chartId="lineChartId[2]" :chartTitle="lineChartTitle[2]"/>
     </div>
 
-    <div class="grid grid-cols-1 mt-10">
+    <div class="grid md:grid-cols-1 mt-10">
       <BarChart :trendTotalConfirmed="trendTotalConfirmed" 
                 :trendTotalRecovered="trendTotalRecovered" 
                 :trendTotalDeaths="trendTotalDeaths"
