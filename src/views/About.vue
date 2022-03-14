@@ -1,13 +1,27 @@
 <template>
   <div class="about">
-    <h1>About this app</h1>
-    
+    <h1 class="text-xl text-blue-900 font-bold mb-4">About This App</h1>
+
     <p>Covid data tracker is an app that shows covid cases from around the world. This app is fetching data from external endpoint, which at the time i wrote this paragraph still free working properly.
       I have no control over the API, so in the future if the API provider limit or close the service, then this app might not work anymore.
     </p><br/>
 
     <p>
       This app is built using vue.js, chart.js, and tailwindcss, feel free to visit the repository on <a href="https://github.com/kadekbagus">my github page.</a>
+    </p><br/>
+
+    <h1 class="text-xl text-blue-900 font-bold mb-4">About Covid-19</h1>
+    <p>
+    Coronavirus disease 2019 (COVID-19) is a contagious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). The first known case was identified in Wuhan, China, in December 2019.[7] The disease has since spread worldwide, leading to an ongoing pandemic.[8]
+
+Symptoms of COVID‑19 are variable, but often include fever,[9] cough, headache,[10] fatigue, breathing difficulties, loss of smell, and loss of taste.[11][12][13] Symptoms may begin one to fourteen days after exposure to the virus. At least a third of people who are infected do not develop noticeable symptoms.[14] Of those people who develop symptoms noticeable enough to be classed as patients, most (81%) develop mild to moderate symptoms (up to mild pneumonia), while 14% develop severe symptoms (dyspnea, hypoxia, or more than 50% lung involvement on imaging), and 5% suffer critical symptoms (respiratory failure, shock, or multiorgan dysfunction).[15] Older people are at a higher risk of developing severe symptoms. Some people continue to experience a range of effects (long COVID) for months after recovery, and damage to organs has been observed.[16] Multi-year studies are underway to further investigate the long-term effects of the disease.[16]
+
+COVID‑19 transmits when people breathe in air contaminated by droplets and small airborne particles containing the virus. The risk of breathing these in is highest when people are in close proximity, but they can be inhaled over longer distances, particularly indoors. Transmission can also occur if splashed or sprayed with contaminated fluids in the eyes, nose or mouth, and, rarely, via contaminated surfaces. People remain contagious for up to 20 days, and can spread the virus even if they do not develop symptoms.[17][18]
+
+Several testing methods have been developed to diagnose the disease. The standard diagnostic method is by detection of the virus's nucleic acid by real-time reverse transcription polymerase chain reaction (rRT-PCR), transcription-mediated amplification (TMA), or by reverse transcription loop-mediated isothermal amplification (RT-LAMP) from a nasopharyngeal swab.
+
+Several COVID-19 vaccines have been approved and distributed in various countries, which have initiated mass vaccination campaigns. Other preventive measures include physical or social distancing, quarantining, ventilation of indoor spaces, covering coughs and sneezes, hand washing, and keeping unwashed hands away from the face. The use of face masks or coverings has been recommended in public settings to minimize the risk of transmission. While work is underway to develop drugs that inhibit the virus, the primary treatment is symptomatic. Management involves the treatment of symptoms, supportive care, isolation, and experimental measures.
     </p>
+  
   </div>
 </template>
